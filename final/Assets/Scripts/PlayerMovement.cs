@@ -240,7 +240,8 @@ public class PlayerMovement : MonoBehaviour
 
         // on the ground
         if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            // rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.MovePosition(transform.position + moveDirection.normalized * moveSpeed * 1f * Time.deltaTime);
 
         // in the air
         else if (!grounded)
@@ -303,5 +304,19 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+    }
+
+    private void OnCollisionEnter (Collision other)
+    {
+        Debug.Log(other.gameObject.name);
+        if(other.gameObject.CompareTag("movingPlatform"))
+        {
+            this.transform.SetParent(other.transform);
+        }
+    }
+
+    private void OnCollisionExit (Collision other)
+    {
+        this.transform.SetParent(null);
     }
 }
