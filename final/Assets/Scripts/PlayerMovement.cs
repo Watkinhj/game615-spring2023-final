@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
-        
+
         // begin crouching
         if (Input.GetKeyDown(crouchKey))
         {
@@ -181,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // check if the desired move speed has changed a big amount
-        if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
+        if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
         {
             StopAllCoroutines();
             StartCoroutine(SmoothlyLerpMoveSpeed());
@@ -240,8 +240,7 @@ public class PlayerMovement : MonoBehaviour
 
         // on the ground
         if (grounded)
-            // rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-            rb.MovePosition(transform.position + moveDirection.normalized * moveSpeed * 1f * Time.deltaTime);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
         // in the air
         else if (!grounded)
@@ -292,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
@@ -306,17 +305,20 @@ public class PlayerMovement : MonoBehaviour
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
 
-    private void OnCollisionEnter (Collision other)
+    
+    /* Begone Demon Code Get Commented Idiot
+private void OnCollisionEnter(Collision other)
     {
         Debug.Log(other.gameObject.name);
-        if(other.gameObject.CompareTag("movingPlatform"))
+        if (other.gameObject.CompareTag("movingPlatform"))
         {
-            this.transform.SetParent(other.transform);
+            this.gameObject.transform.SetParent(other.gameObject.transform);
         }
     }
 
-    private void OnCollisionExit (Collision other)
+    private void OnCollisionExit(Collision other)
     {
-        this.transform.SetParent(null);
+        this.gameObject.transform.SetParent(null);
     }
+    */
 }
