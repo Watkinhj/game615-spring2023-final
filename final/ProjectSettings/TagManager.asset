@@ -7,6 +7,12 @@ TagManager:
   - movingPlatform
   - startMovingDown
   - startMovingUp
+  - respawnMain
+  - respawn1
+  - respawn2
+  - respawn3
+  - respawn4
+  - key
   layers:
   - Default
   - TransparentFX
