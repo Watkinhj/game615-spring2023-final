@@ -13,6 +13,7 @@ TagManager:
   - respawn3
   - respawn4
   - key
+  - firewall
   layers:
   - Default
   - TransparentFX

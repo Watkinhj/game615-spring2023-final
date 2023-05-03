@@ -71,6 +71,12 @@ public class respawnAtCheckPoint : MonoBehaviour
             Debug.Log("Teleported to Level 4 Start.");
             //PlayZap();
         }
-        
+        else if (other.gameObject.tag == "virus")
+        {
+            player.transform.position = pos4.transform.position;
+            Debug.Log("Teleported to Final Level Start.");
+            //PlayZap();
+        }
+
     }
 }
