@@ -13,15 +13,15 @@ public class UIManagerKeys : MonoBehaviour
     public Animator UIToDeactivateAnim;
     public Animator UIToActivateFinalAnim;
 
-
     private void OnTriggerEnter(Collider other)
     {
         PlayerMovement CC = player.GetComponent<PlayerMovement>();
 
         if (other.gameObject.tag == "Player")
         {
-            if (GameObject.FindGameObjectsWithTag("key").Length <= 1)
+            if (GameObject.FindGameObjectsWithTag("key").Length <= 0)
             {
+                UIToActivateAnim.SetBool("Deactivated", true);
                 Debug.Log("Final Key Collected.");
                 UIToActivateFinalAnim.SetBool("Activated", true);
                 UIToDeactivateAnim.SetBool("Deactivated", true);
