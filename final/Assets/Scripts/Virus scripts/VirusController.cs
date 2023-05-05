@@ -5,6 +5,7 @@ using UnityEngine;
 public class VirusController : MonoBehaviour
 {
     Vector3 rotation;
+    private Vector3 heightModifier = new Vector3(0f, 0.5f, 0f);
     private GameObject player;
     private GameObject virus;
     const float randomLowerBound = -100f;
@@ -28,14 +29,14 @@ public class VirusController : MonoBehaviour
 
         if(gm.chaseTime)
         {
-            //Debug.Log("It begins.");
             Chase();
         }
     }
 
     private void Chase()
     {
-        transform.position = Vector3.MoveTowards(transform.position, gm.player.transform.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, gm.player.transform.position + heightModifier,
+             speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,6 +45,8 @@ public class VirusController : MonoBehaviour
         {
             Debug.Log("Reset!");
             gm.resetViruses();
+            gm.player.transform.position = new Vector3(0f, 1.88f, 33.8f);
+            Debug.Log("Teleported to Level 4 Start because virus.");
         }
     }
 }

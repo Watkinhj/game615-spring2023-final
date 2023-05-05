@@ -15,6 +15,9 @@ TagManager:
   - key
   - firewall
   - UITrigger
+  - Virus
+  - music
+  - sound
   layers:
   - Default
   - TransparentFX
