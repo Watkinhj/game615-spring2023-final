@@ -6,8 +6,8 @@ public class KeyScript : MonoBehaviour
 {
     [SerializeField] private Transform posMain;
     [SerializeField] private Transform player;
-    private GameObject keyCollectedSoundObject;
-    private AudioSource keyCollectedSound;
+    public GameObject keyCollectedSoundObject;
+    public AudioSource keyCollectedSound;
 
     void Start()
     {
