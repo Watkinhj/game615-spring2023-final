@@ -11,26 +11,30 @@ public class UIManagerKeys : MonoBehaviour
 
     public Animator UIToActivateAnim;
     public Animator UIToDeactivateAnim;
-    public Animator UIToActivateFinalAnim;
+    //public Animator UIToActivateFinalAnim;
 
     private void OnTriggerEnter(Collider other)
     {
         PlayerMovement CC = player.GetComponent<PlayerMovement>();
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "UITrigger")
         {
-            if (GameObject.FindGameObjectsWithTag("key").Length <= 0)
+
+            Debug.Log("Picked Up Key: " + GameObject.FindGameObjectsWithTag("key").Length);
+
+            if (GameObject.FindGameObjectsWithTag("key").Length <= 1)
             {
-                UIToActivateAnim.SetBool("Deactivated", true);
                 Debug.Log("Final Key Collected.");
-                UIToActivateFinalAnim.SetBool("Activated", true);
-                UIToDeactivateAnim.SetBool("Deactivated", true);
+                //UIToActivateAnim.SetTrigger("Deactivated");
+                UIToActivateAnim.SetTrigger("FinalActivated");
+                //UIToActivateFinalAnim.SetTrigger("Activated");
+                UIToDeactivateAnim.SetTrigger("Deactivated");
             }
 
             else
             {
-                UIToActivateAnim.SetBool("Activated", true);
-                UIToDeactivateAnim.SetBool("Deactivated", true);
+                UIToActivateAnim.SetTrigger("Activated");
+                UIToDeactivateAnim.SetTrigger("Deactivated");
             }
         }
     }
