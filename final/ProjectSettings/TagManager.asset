@@ -16,8 +16,12 @@ TagManager:
   - firewall
   - UITrigger
   - Virus
-  - music
-  - sound
+  - respawnSound
+  - keyCollectedSound
+  - firewallDownSound
+  - mainMusic
+  - finalAreaMusic
+  - titleMusic
   layers:
   - Default
   - TransparentFX
