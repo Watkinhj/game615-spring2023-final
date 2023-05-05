@@ -16,11 +16,13 @@ public class UIManager : MonoBehaviour
     {
         PlayerMovement CC = player.GetComponent<PlayerMovement>();
 
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "UITrigger")
         {
             Debug.Log("Hit UI trigger.");
-            UIToActivateAnim.SetBool("Activated", true);
-            UIToDeactivateAnim.SetBool("Deactivated", true);
+            //UIToActivateAnim.SetBool("Activated", true);
+            //UIToDeactivateAnim.SetBool("Deactivated", true);
+            UIToActivateAnim.SetTrigger("Activated");
+            UIToDeactivateAnim.SetTrigger("Deactivated");
         }
     }
 }
