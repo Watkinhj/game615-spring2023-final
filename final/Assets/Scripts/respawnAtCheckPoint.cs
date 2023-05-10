@@ -14,15 +14,28 @@ public class respawnAtCheckPoint : MonoBehaviour
     [SerializeField] private Transform pos4;
     [SerializeField] private Transform player;
     //private int checkpointCount = 1;
-    //public AudioSource Zap;
+    public AudioSource respawnSound;
+    public AudioSource keySound;
+    public AudioSource firewallSound;
+    public GameManager gm;
 
-    /*
-    public void PlayZap()
+    public void PlayRespawn()
     {
-        Zap.Stop();
-        Zap.Play();
+        respawnSound.Stop();
+        respawnSound.Play();
     }
-    */
+
+    public void PlayKeySound()
+    {
+        keySound.Stop();
+        keySound.Play();
+    }
+
+    public void PlayFirewallSound()
+    {
+        firewallSound.Stop();
+        firewallSound.Play();
+    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -38,16 +51,27 @@ public class respawnAtCheckPoint : MonoBehaviour
 
         if (other.gameObject.tag == "key")
         {
-            player.transform.position = posMain.transform.position;
-            //PlayZap();
-            Debug.Log("Teleported Back to Hub Zone.");
-            Destroy(other.gameObject);
+            if (GameObject.FindGameObjectsWithTag("key").Length <= 1)
+            {
+                player.transform.position = posMain.transform.position;
+                PlayFirewallSound();
+                Debug.Log("Teleported Back to Hub Zone.");
+                Destroy(other.gameObject);
+            }
+            
+            else
+            {
+                player.transform.position = posMain.transform.position;
+                PlayKeySound();
+                Debug.Log("Teleported Back to Hub Zone.");
+                Destroy(other.gameObject);
+            }
         }
             
         else if (other.gameObject.tag == "respawn1")
         {   
             player.transform.position = pos1.transform.position;
-            //PlayZap();
+            PlayRespawn();
             Debug.Log("Teleported to Level 1 Start.");
         }
             
@@ -55,27 +79,29 @@ public class respawnAtCheckPoint : MonoBehaviour
         {  
             player.transform.position = pos2.transform.position;
             Debug.Log("Teleported to Level 2 Start.");
-            //PlayZap(); 
+            PlayRespawn();
         }
             
         else if (other.gameObject.tag == "respawn3")
         {
             player.transform.position = pos3.transform.position;
             Debug.Log("Teleported to Level 3 Start.");
-            //PlayZap();
+            PlayRespawn();
         }
 
         else if (other.gameObject.tag == "respawn4")
         {
             player.transform.position = pos4.transform.position;
             Debug.Log("Teleported to Level 4 Start.");
-            //PlayZap();
+            gm.resetViruses();
+            PlayRespawn();
         }
         else if (other.gameObject.tag == "virus")
         {
             player.transform.position = pos4.transform.position;
             Debug.Log("Teleported to Final Level Start.");
-            //PlayZap();
+            gm.resetViruses();
+            PlayRespawn();
         }
 
     }

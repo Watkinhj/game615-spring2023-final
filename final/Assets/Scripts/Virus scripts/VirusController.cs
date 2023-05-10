@@ -12,6 +12,7 @@ public class VirusController : MonoBehaviour
     const float randomUpperBound = 100f;
     const float speed = 2f;
     public GameManager gm;
+    //public Transform pos4;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,8 @@ public class VirusController : MonoBehaviour
         {
             Debug.Log("Reset!");
             gm.resetViruses();
-            gm.player.transform.position = new Vector3(0f, 1.88f, 33.8f);
+            //player.transform.position = pos4.transform.position;
+            gm.player.transform.position = new Vector3(0f, -9f, 33.8f);
             Debug.Log("Teleported to Level 4 Start because virus.");
         }
     }
